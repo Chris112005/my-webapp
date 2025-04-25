@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MVN_HOME = tool 'Maven'
+        MVN_HOME = tool 'Maven'  // Make sure Maven is set up in Jenkins Global Tools
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     bat '''
                         setlocal EnableDelayedExpansion
-                           curl -u !TOMCAT_USER!:!TOMCAT_PASS! -T target\\my-webapp.war "http://localhost:8090/manager/deploy?path=/my-webapp&update=true"
+                        curl -u !TOMCAT_USER!:!TOMCAT_PASS! -T target\\my-webapp.war "http://localhost:8090/manager/deploy?path=/my-webapp&update=true"
                         endlocal
                     '''
                 }
