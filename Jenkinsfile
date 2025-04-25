@@ -29,7 +29,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     bat '''
                         setlocal EnableDelayedExpansion
-                        curl -u !TOMCAT_USER!:!TOMCAT_PASS! -T target\\sample.war "http://localhost:8090/manager/deploy?path=/sample&update=true"
+                           curl -u !TOMCAT_USER!:!TOMCAT_PASS! -T target\\my-webapp.war "http://localhost:8090/manager/deploy?path=/my-webapp&update=true"
                         endlocal
                     '''
                 }
